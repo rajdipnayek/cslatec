@@ -2,6 +2,7 @@
 
 PREFIX=/usr/local
 ARFLAGS=-cru
+CPPFLAGS=-Iinclude
 CFLAGS=-O2 -fPIC
 
 major=4
@@ -300,3 +301,7 @@ lib/libslatec.so.$(version): $(objs)
 	mkdir -p lib
 	$(CC) $(LDFLAGS) -shared -Wl,-soname,libslatec.so.$(major) \
 	    -o $@ $(objs) $(libs)
+
+$(objs): include/f2c.h
+
+include/f2c.h: include/f2c_types.h include/f2c_inline.h
