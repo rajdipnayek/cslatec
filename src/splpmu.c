@@ -736,5 +736,7 @@ L20123:
 	case 1: goto L20074;
 	case 2: goto L20109;
     }
+    abort();
+    return 0;
 } /* splpmu_ */
 
