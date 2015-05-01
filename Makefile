@@ -4,7 +4,7 @@ PREFIX=/usr/local
 ARFLAGS=-cru
 CPPFLAGS=-Iinclude
 # suppress warnings _for now_
-CFLAGS=-O2 -fPIC -Wall -Wno-parentheses -Wno-maybe-uninitialized -Wno-unused-but-set-variable -Wno-implicit-function-declaration
+CFLAGS=-O2 -fPIC -Wall -Wno-parentheses -Wno-maybe-uninitialized -Wno-unused-but-set-variable
 
 major=4
 version=$(major).1.1
