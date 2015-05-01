@@ -3,7 +3,7 @@
 PREFIX=/usr/local
 ARFLAGS=-cru
 CPPFLAGS=-Iinclude
-CFLAGS=-O2 -fPIC
+CFLAGS=-O2 -fPIC -Wall
 
 major=4
 version=$(major).1.1
@@ -60,7 +60,7 @@ src/csymm.o src/csyr2k.o src/csyrk.o src/ctan.o src/ctanh.o src/ctbmv.o \
 src/ctbsv.o src/ctpmv.o src/ctpsv.o src/ctrco.o src/ctrdi.o src/ctrmm.o \
 src/ctrmv.o src/ctrsl.o src/ctrsm.o src/ctrsv.o src/cuchk.o src/cunhj.o \
 src/cuni1.o src/cuni2.o src/cunik.o src/cunk1.o src/cunk2.o src/cuoik.o \
-src/cv.o src/cwrsk.o src/d1mach.o src/d1merg.o src/d1mpyq.o src/d1updt.o \
+src/cv.o src/cwrsk.o src/d1merg.o src/d1mpyq.o src/d1updt.o \
 src/d9aimp.o src/d9atn1.o src/d9b0mp.o src/d9b1mp.o src/d9chu.o src/d9gmic.o \
 src/d9gmit.o src/d9knus.o src/d9lgic.o src/d9lgit.o src/d9lgmc.o src/d9ln2r.o \
 src/d9pak.o src/d9upak.o src/dacosh.o src/daie.o src/dai.o src/dasinh.o \
@@ -147,7 +147,7 @@ src/gaus8.o src/genbun.o src/h12.o src/hfti.o src/hkseq.o src/hpperm.o \
 src/hpsort.o src/hqr2.o src/hqr.o src/hstart.o src/hstcrt.o src/hstcs1.o \
 src/hstcsp.o src/hstcyl.o src/hstplr.o src/hstssp.o src/htrib3.o src/htribk.o \
 src/htrid3.o src/htridi.o src/hvnrm.o src/hw3crt.o src/hwscrt.o src/hwscs1.o \
-src/hwscsp.o src/hwscyl.o src/hwsplr.o src/hwsss1.o src/hwsssp.o src/i1mach.o \
+src/hwscsp.o src/hwscyl.o src/hwsplr.o src/hwsss1.o src/hwsssp.o \
 src/i1merg.o src/icamax.o src/icopy.o src/idamax.o src/idloc.o src/imtql1.o \
 src/imtql2.o src/imtqlv.o src/indxa.o src/indxb.o src/indxc.o src/initds.o \
 src/inits.o src/intrv.o src/intyd.o src/invit.o src/inxca.o src/inxcb.o \
@@ -181,7 +181,7 @@ src/qelg.o src/qform.o src/qk15.o src/qk15i.o src/qk15w.o src/qk21.o \
 src/qk31.o src/qk41.o src/qk51.o src/qk61.o src/qmomo.o src/qnc79.o src/qng.o \
 src/qpdoc.o src/qpsrt.o src/qrfac.o src/qrsolv.o src/qs2i1d.o src/qs2i1r.o \
 src/qwgtc.o src/qwgtf.o src/qwgts.o src/qzhes.o src/qzit.o src/qzval.o \
-src/qzvec.o src/r1mach.o src/r1mpyq.o src/r1updt.o src/r9aimp.o src/r9atn1.o \
+src/qzvec.o src/r1mpyq.o src/r1updt.o src/r9aimp.o src/r9atn1.o \
 src/r9chu.o src/r9gmic.o src/r9gmit.o src/r9knus.o src/r9lgic.o src/r9lgit.o \
 src/r9lgmc.o src/r9ln2r.o src/r9pak.o src/r9upak.o src/radb2.o src/radb3.o \
 src/radb4.o src/radb5.o src/radbg.o src/radf2.o src/radf3.o src/radf4.o \
@@ -242,7 +242,8 @@ src/zbesi.o src/zbesj.o src/zbesk.o src/zbesy.o src/zbinu.o src/zbiry.o \
 src/zbknu.o src/zbuni.o src/zbunk.o src/zdiv.o src/zexp.o src/zkscl.o \
 src/zlog.o src/zmlri.o src/zmlt.o src/zrati.o src/zs1s2.o src/zseri.o \
 src/zshch.o src/zsqrt.o src/zuchk.o src/zunhj.o src/zuni1.o src/zuni2.o \
-src/zunik.o src/zunk1.o src/zunk2.o src/zuoik.o src/zwrsk.o shim.o
+src/zunik.o src/zunk1.o src/zunk2.o src/zuoik.o src/zwrsk.o \
+mach.o shim.o
 objs_dbvp=src/dbksol.o src/dbvder.o src/dbvpor.o src/dbvsup.o src/dcoef.o \
 src/dcscal.o src/dexbvp.o src/dlssud.o src/dmacon.o src/dmgsbv.o src/dohtrl.o \
 src/dorthr.o src/dprvec.o src/dreort.o src/drkfab.o src/dstor1.o src/dstway.o \
@@ -303,5 +304,3 @@ lib/libslatec.so.$(version): $(objs)
 	    -o $@ $(objs) $(libs)
 
 $(objs): include/f2c.h
-
-include/f2c.h: include/f2c_types.h include/f2c_inline.h
