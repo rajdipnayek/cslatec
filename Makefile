@@ -9,7 +9,15 @@ CFLAGS=-O2 -fPIC -Wall -Wno-parentheses -Wno-maybe-uninitialized -Wno-unused-but
 major=4
 version=$(major).1.1
 
-libs=-lm
+# stin stout
+# dtin dtout
+# wnnls
+# splp fulmat iploc ivout la05as la05bs la05cs la05es mc20as pchngs pinitm pnnzrs prwpge prwvir sclosm sopenm spincw spinit splpce splpdm splpfe splpfl splpmn splpmu splpup spopt sreadp svout swritp usrmat
+# dsplp dfulmt dpchng dpincw dpinit dpintm dplpce dplpdm dplpfe dplpfl dplpmn dplpmu dplpup dpnnzr dpopt dprwpg dreadp dusermt dvout dwritp idloc la05ad la05bd la05cd la05ed mc20ad
+
+#src/\(splpmu\|splpfe\|ivout\|sopenm\|sreadp\|usrmat\|splpdm\|prwpge\|sclosm\|splpce\|iploc\|la05cs\|mc20as\|la05bs\|splpmn\|fulmat\|pinitm\|spopt\|prwvir\|la05es\|pnnzrs\|splpup\|la05as\|svout\|spinit\|spincw\|pchngs\|splpfl\)\.o
+
+libs=-lblas -lm
 # derf, derfc, erf, erfc are not used (conflicts with f2c)
 objs=src/aaaaaa.o src/acosh.o src/aie.o src/ai.o src/albeta.o src/algams.o \
 src/ali.o src/alngam.o src/alnrel.o src/asinh.o src/asyik.o src/asyjy.o \
@@ -25,7 +33,7 @@ src/bsgq8.o src/bskin.o src/bspdoc.o src/bspdr.o src/bspev.o src/bsplvd.o \
 src/bsplvn.o src/bsppp.o src/bspvd.o src/bspvn.o src/bsqad.o src/bsrh.o \
 src/bvalu.o src/c0lgmc.o src/c1merg.o src/c9lgmc.o src/c9ln2r.o src/cacai.o \
 src/cacon.o src/cacos.o src/cacosh.o src/cairy.o src/carg.o src/casin.o \
-src/casinh.o src/casyi.o src/catan2.o src/catan.o src/catanh.o src/caxpy.o \
+src/casinh.o src/casyi.o src/catan2.o src/catan.o src/catanh.o \
 src/cbabk2.o src/cbal.o src/cbesh.o src/cbesi.o src/cbesj.o src/cbesk.o \
 src/cbesy.o src/cbeta.o src/cbinu.o src/cbiry.o src/cbknu.o src/cblkt1.o \
 src/cblktr.o src/cbrt.o src/cbuni.o src/cbunk.o src/ccbrt.o src/cchdc.o \
@@ -35,10 +43,10 @@ src/cdntp.o src/cdotc.o src/cdotu.o src/cdpsc.o src/cdpst.o src/cdriv1.o \
 src/cdriv2.o src/cdriv3.o src/cdscl.o src/cdstp.o src/cdzro.o src/cexprl.o \
 src/cfftb1.o src/cfftb.o src/cfftf1.o src/cfftf.o src/cffti1.o src/cffti.o \
 src/cfod.o src/cgamma.o src/cgamr.o src/cgbco.o src/cgbdi.o src/cgbfa.o \
-src/cgbmv.o src/cgbsl.o src/cgeco.o src/cgedi.o src/cgeev.o src/cgefa.o \
-src/cgefs.o src/cgeir.o src/cgemm.o src/cgemv.o src/cgerc.o src/cgeru.o \
-src/cgesl.o src/cg.o src/cgtsl.o src/chbmv.o src/chemm.o src/chemv.o \
-src/cher2.o src/cher2k.o src/cher.o src/cherk.o src/ch.o src/chfcm.o \
+src/cgbsl.o src/cgeco.o src/cgedi.o src/cgeev.o src/cgefa.o \
+src/cgefs.o src/cgeir.o \
+src/cgesl.o src/cg.o src/cgtsl.o \
+src/cher2.o src/ch.o src/chfcm.o \
 src/chfdv.o src/chfev.o src/chfie.o src/chico.o src/chidi.o src/chiev.o \
 src/chifa.o src/chisl.o src/chkder.o src/chkpr4.o src/chkprm.o src/chksn4.o \
 src/chksng.o src/chpco.o src/chpdi.o src/chpfa.o src/chpmv.o src/chpr2.o \
@@ -56,8 +64,8 @@ src/cproc.o src/cprocp.o src/cprod.o src/cprodp.o src/cpsi.o src/cptsl.o \
 src/cpzero.o src/cqrdc.o src/cqrsl.o src/crati.o src/crotg.o src/cs1s2.o \
 src/cscal.o src/cseri.o src/csevl.o src/cshch.o src/csico.o src/csidi.o \
 src/csifa.o src/csinh.o src/csisl.o src/cspco.o src/cspdi.o src/cspfa.o \
-src/cspsl.o src/csroot.o src/csrot.o src/csscal.o src/csvdc.o src/cswap.o \
-src/csymm.o src/csyr2k.o src/csyrk.o src/ctan.o src/ctanh.o src/ctbmv.o \
+src/cspsl.o src/csroot.o src/csvdc.o \
+src/ctan.o src/ctanh.o src/ctbmv.o \
 src/ctbsv.o src/ctpmv.o src/ctpsv.o src/ctrco.o src/ctrdi.o src/ctrmm.o \
 src/ctrmv.o src/ctrsl.o src/ctrsm.o src/ctrsv.o src/cuchk.o src/cunhj.o \
 src/cuni1.o src/cuni2.o src/cunik.o src/cunk1.o src/cunk2.o src/cuoik.o \
@@ -87,10 +95,10 @@ src/de1.o src/deabm.o src/debdf.o src/defc.o src/defcmn.o src/defe4.o \
 src/defehl.o src/defer.o src/dei.o src/denorm.o \
 src/derkf.o src/derkfs.o src/des.o src/dexint.o src/dexprl.o src/dfac.o \
 src/dfc.o src/dfcmn.o src/dfdjc1.o src/dfdjc3.o src/dfehl.o src/dfspvd.o \
-src/dfspvn.o src/dfulmt.o src/dfzero.o src/dgamic.o src/dgami.o src/dgamit.o \
+src/dfspvn.o src/dfzero.o src/dgamic.o src/dgami.o src/dgamit.o \
 src/dgamlm.o src/dgamln.o src/dgamma.o src/dgamr.o src/dgamrn.o src/dgaus8.o \
 src/dgbco.o src/dgbdi.o src/dgbfa.o src/dgbmv.o src/dgbsl.o src/dgeco.o \
-src/dgedi.o src/dgefa.o src/dgefs.o src/dgemm.o src/dgemv.o src/dger.o \
+src/dgedi.o src/dgefa.o src/dgefs.o \
 src/dgesl.o src/dglss.o src/dgmres.o src/dgtsl.o src/dh12.o src/dhels.o \
 src/dheqr.o src/dhfti.o src/dhkseq.o src/dhstrt.o src/dhvnrm.o src/dintp.o \
 src/dintrv.o src/dintyd.o src/dir.o src/djairy.o src/dlbeta.o src/dlgams.o \
@@ -101,13 +109,13 @@ src/dnls1.o src/dnrm2.o src/dnsqe.o src/dnsq.o src/dogleg.o src/domn.o \
 src/dorth.o src/dp1vlu.o src/dpbco.o src/dpbdi.o src/dpbfa.o src/dpbsl.o \
 src/dpchbs.o src/dpchce.o src/dpchci.o src/dpchcm.o src/dpchcs.o src/dpchdf.o \
 src/dpchfd.o src/dpchfe.o src/dpchia.o src/dpchic.o src/dpchid.o src/dpchim.o \
-src/dpchkt.o src/dpchng.o src/dpchsp.o src/dpchst.o src/dpchsw.o src/dpcoef.o \
-src/dpfqad.o src/dpigmr.o src/dpincw.o src/dpinit.o src/dpintm.o src/dpjac.o \
-src/dplint.o src/dplpce.o src/dplpdm.o src/dplpfe.o src/dplpfl.o src/dplpmn.o \
-src/dplpmu.o src/dplpup.o src/dpnnzr.o src/dpoch1.o src/dpoch.o src/dpoco.o \
+src/dpchkt.o src/dpchsp.o src/dpchst.o src/dpchsw.o src/dpcoef.o \
+src/dpfqad.o src/dpigmr.o src/dpjac.o \
+src/dplint.o \
+src/dpoch1.o src/dpoch.o src/dpoco.o \
 src/dpodi.o src/dpofa.o src/dpofs.o src/dpolcf.o src/dpolft.o src/dpolvl.o \
-src/dpopt.o src/dposl.o src/dppco.o src/dppdi.o src/dpperm.o src/dppfa.o \
-src/dppgq8.o src/dppqad.o src/dppsl.o src/dppval.o src/dprwpg.o src/dprwvr.o \
+src/dposl.o src/dppco.o src/dppdi.o src/dpperm.o src/dppfa.o \
+src/dppgq8.o src/dppqad.o src/dppsl.o src/dppval.o src/dprwvr.o \
 src/dpsi.o src/dpsifn.o src/dpsixn.o src/dpsort.o src/dptsl.o src/dqage.o \
 src/dqag.o src/dqagie.o src/dqagi.o src/dqagpe.o src/dqagp.o src/dqagse.o \
 src/dqags.o src/dqawce.o src/dqawc.o src/dqawfe.o src/dqawf.o src/dqawoe.o \
@@ -116,7 +124,7 @@ src/dqcheb.o src/dqdota.o src/dqdoti.o src/dqelg.o src/dqform.o src/dqk15.o \
 src/dqk15i.o src/dqk15w.o src/dqk21.o src/dqk31.o src/dqk41.o src/dqk51.o \
 src/dqk61.o src/dqmomo.o src/dqnc79.o src/dqng.o src/dqpsrt.o src/dqrdc.o \
 src/dqrfac.o src/dqrsl.o src/dqrslv.o src/dqwgtc.o src/dqwgtf.o src/dqwgts.o \
-src/drc3jj.o src/drc3jm.o src/drc6j.o src/drc.o src/drd.o src/dreadp.o \
+src/drc3jj.o src/drc3jm.o src/drc6j.o src/drc.o src/drd.o \
 src/drf.o src/drj.o src/drkfs.o src/drlcal.o src/drot.o src/drotg.o \
 src/drotm.o src/drotmg.o src/drsco.o src/ds2lt.o src/ds2y.o src/dsbmv.o \
 src/dscal.o src/dsd2s.o src/dsdbcg.o src/dsdcg.o src/dsdcgn.o src/dsdcgs.o \
@@ -127,14 +135,14 @@ src/dsli.o src/dsllti.o src/dslubc.o src/dslucn.o src/dslucs.o src/dslugm.o \
 src/dslui2.o src/dslui4.o src/dslui.o src/dsluom.o src/dsluti.o src/dslvs.o \
 src/dsmmi2.o src/dsmmti.o src/dsmtv.o src/dsmv.o src/dsort.o src/dsoseq.o \
 src/dsos.o src/dsossl.o src/dspco.o src/dspdi.o src/dspenc.o src/dspfa.o \
-src/dsplp.o src/dspmv.o src/dspr2.o src/dspr.o src/dspsl.o src/dsteps.o \
+src/dspmv.o src/dspr2.o src/dspr.o src/dspsl.o src/dsteps.o \
 src/dstod.o src/dsvco.o src/dsvdc.o src/dswap.o src/dsymm.o src/dsymv.o \
 src/dsyr2.o src/dsyr2k.o src/dsyr.o src/dsyrk.o src/dtbmv.o src/dtbsv.o \
-src/dtin.o src/dtout.o src/dtpmv.o src/dtpsv.o src/dtrco.o src/dtrdi.o \
+src/dtpmv.o src/dtpsv.o src/dtrco.o src/dtrdi.o \
 src/dtrmm.o src/dtrmv.o src/dtrsl.o src/dtrsm.o src/dtrsv.o src/du11ls.o \
 src/du11us.o src/du12ls.o src/du12us.o src/dulsia.o src/dusrmt.o src/dvnrms.o \
-src/dvout.o src/dwnlit.o src/dwnlsm.o src/dwnlt1.o src/dwnlt2.o src/dwnlt3.o \
-src/dwnnls.o src/dwritp.o src/dwupdt.o src/dx4.o src/dxadd.o src/dxadj.o \
+src/dwnlit.o src/dwnlsm.o src/dwnlt1.o src/dwnlt2.o src/dwnlt3.o \
+src/dwnnls.o src/dwupdt.o src/dx4.o src/dxadd.o src/dxadj.o \
 src/dxc210.o src/dxcon.o src/dx.o src/dxlcal.o src/dxlegf.o src/dxnrmp.o \
 src/dxpmu.o src/dxpmup.o src/dxpnrm.o src/dxpqnu.o src/dxpsi.o src/dxqmu.o \
 src/dxqnu.o src/dxred.o src/dxset.o src/dy4.o src/dyairy.o src/dy.o src/e1.o \
@@ -142,23 +150,23 @@ src/efc.o src/efcmn.o src/ei.o src/eisdoc.o src/elmbak.o src/elmhes.o \
 src/eltran.o src/enorm.o src/exint.o src/exprel.o \
 src/ezfft1.o src/ezfftb.o src/ezfftf.o src/ezffti.o src/fac.o src/fc.o \
 src/fcmn.o src/fdjac1.o src/fdjac3.o src/fftdoc.o src/figi2.o \
-src/figi.o src/fulmat.o src/fundoc.o src/fzero.o src/gamic.o src/gami.o \
+src/figi.o src/fundoc.o src/fzero.o src/gamic.o src/gami.o \
 src/gamit.o src/gamlim.o src/gamln.o src/gamma.o src/gamr.o src/gamrn.o \
 src/gaus8.o src/genbun.o src/h12.o src/hfti.o src/hkseq.o src/hpperm.o \
 src/hpsort.o src/hqr2.o src/hqr.o src/hstart.o src/hstcrt.o src/hstcs1.o \
 src/hstcsp.o src/hstcyl.o src/hstplr.o src/hstssp.o src/htrib3.o src/htribk.o \
 src/htrid3.o src/htridi.o src/hvnrm.o src/hw3crt.o src/hwscrt.o src/hwscs1.o \
 src/hwscsp.o src/hwscyl.o src/hwsplr.o src/hwsss1.o src/hwsssp.o \
-src/i1merg.o src/icamax.o src/icopy.o src/idamax.o src/idloc.o src/imtql1.o \
+src/i1merg.o src/icamax.o src/icopy.o src/idamax.o src/imtql1.o \
 src/imtql2.o src/imtqlv.o src/indxa.o src/indxb.o src/indxc.o src/initds.o \
 src/inits.o src/intrv.o src/intyd.o src/invit.o src/inxca.o src/inxcb.o \
-src/inxcc.o src/iploc.o src/ipperm.o src/ipsort.o src/isamax.o src/isdbcg.o \
+src/inxcc.o src/ipperm.o src/ipsort.o src/isamax.o src/isdbcg.o \
 src/isdcg.o src/isdcgn.o src/isdcgs.o src/isdgmr.o src/isdir.o src/isdomn.o \
 src/isort.o src/issbcg.o src/isscg.o src/isscgn.o src/isscgs.o src/issgmr.o \
-src/issir.o src/issomn.o src/iswap.o src/ivout.o src/j4save.o src/jairy.o \
-src/la05ad.o src/la05as.o src/la05bd.o src/la05bs.o src/la05cd.o src/la05cs.o \
-src/la05ed.o src/la05es.o src/llsia.o src/lmpar.o src/lpdp.o src/lsame.o \
-src/lsei.o src/lsi.o src/lsod.o src/mc20ad.o src/mc20as.o src/minfit.o \
+src/issir.o src/issomn.o src/iswap.o src/j4save.o src/jairy.o \
+\
+src/llsia.o src/lmpar.o src/lpdp.o src/lsame.o \
+src/lsei.o src/lsi.o src/lsod.o src/minfit.o \
 src/minso4.o src/minsol.o src/mpadd2.o src/mpadd3.o src/mpadd.o src/mpblas.o \
 src/mpcdm.o src/mpchk.o src/mpcmd.o src/mpdivi.o src/mperr.o src/mpmaxr.o \
 src/mpmlp.o src/mpmul2.o src/mpmul.o src/mpmuli.o src/mpnzr.o src/mpovfl.o \
@@ -167,13 +175,13 @@ src/orthog.o src/ortran.o src/passb2.o src/passb3.o src/passb4.o src/passb5.o \
 src/passb.o src/passf2.o src/passf3.o src/passf4.o src/passf5.o src/passf.o \
 src/pchbs.o src/pchce.o src/pchci.o src/pchcm.o src/pchcs.o src/pchdf.o \
 src/pchdoc.o src/pchfd.o src/pchfe.o src/pchia.o src/pchic.o src/pchid.o \
-src/pchim.o src/pchkt.o src/pchngs.o src/pchsp.o src/pchst.o src/pchsw.o \
-src/pcoef.o src/pfqad.o src/pgsf.o src/pimach.o src/pinitm.o src/pjac.o \
-src/pnnzrs.o src/poch1.o src/poch.o src/pois3d.o src/poisd2.o src/poisn2.o \
+src/pchim.o src/pchkt.o src/pchsp.o src/pchst.o src/pchsw.o \
+src/pcoef.o src/pfqad.o src/pgsf.o src/pimach.o src/pjac.o \
+src/poch1.o src/poch.o src/pois3d.o src/poisd2.o src/poisn2.o \
 src/poisp2.o src/poistg.o src/polcof.o src/polfit.o src/polint.o src/polyvl.o \
 src/pos3d1.o src/postg2.o src/ppadd.o src/ppgq8.o src/ppgsf.o src/pppsf.o \
 src/ppqad.o src/ppsgf.o src/ppspf.o src/ppval.o src/proc.o src/procp.o \
-src/prod.o src/prodp.o src/prwpge.o src/prwvir.o src/psgf.o src/psi.o \
+src/prod.o src/prodp.o src/psgf.o src/psi.o \
 src/psifn.o src/psixn.o src/pvalue.o src/pythag.o src/qage.o src/qag.o \
 src/qagie.o src/qagi.o src/qagpe.o src/qagp.o src/qagse.o src/qags.o \
 src/qawce.o src/qawc.o src/qawfe.o src/qawf.o src/qawoe.o src/qawo.o \
@@ -194,26 +202,26 @@ src/rpqr79.o src/rpzero.o src/rsb.o src/rsco.o src/rs.o src/rsgab.o \
 src/rsgba.o src/rsg.o src/rsp.o src/rst.o src/rt.o src/runif.o src/rwupdt.o \
 src/s1merg.o src/sasum.o src/saxpy.o src/sbcg.o src/sbhin.o src/sbocls.o \
 src/sbols.o src/sbolsm.o src/scasum.o src/scg.o src/scgn.o src/scgs.o \
-src/schdc.o src/schdd.o src/schex.o src/schkw.o src/schud.o src/sclosm.o \
+src/schdc.o src/schdd.o src/schex.o src/schkw.o src/schud.o \
 src/scnrm2.o src/scopy.o src/scopym.o src/scov.o src/scpplt.o src/sdaini.o \
 src/sdajac.o src/sdanrm.o src/sdaslv.o src/sdassl.o src/sdastp.o src/sdatrp.o \
 src/sdawts.o src/sdcor.o src/sdcst.o src/sdntl.o src/sdntp.o src/sdot.o \
 src/sdpsc.o src/sdpst.o src/sdriv1.o src/sdriv2.o src/sdriv3.o src/sdscl.o \
 src/sdsdot.o src/sdstp.o src/sdzro.o src/sepeli.o src/sepx4.o src/sgbco.o \
 src/sgbdi.o src/sgbfa.o src/sgbmv.o src/sgbsl.o src/sgeco.o src/sgedi.o \
-src/sgeev.o src/sgefa.o src/sgefs.o src/sgeir.o src/sgemm.o src/sgemv.o \
-src/sger.o src/sgesl.o src/sglss.o src/sgmres.o src/sgtsl.o src/shels.o \
+src/sgeev.o src/sgefa.o src/sgefs.o src/sgeir.o \
+src/sgesl.o src/sglss.o src/sgmres.o src/sgtsl.o src/shels.o \
 src/sheqr.o src/sindg.o src/sinqb.o src/sinqf.o src/sinqi.o src/sint.o \
 src/sinti.o src/sintrp.o src/sir.o src/sllti2.o src/slpdoc.o src/slvs.o \
 src/smout.o src/snbco.o src/snbdi.o src/snbfa.o src/snbfs.o src/snbir.o \
 src/snbsl.o src/snls1e.o src/snls1.o src/snrm2.o src/snsqe.o src/snsq.o \
-src/somn.o src/sopenm.o src/sorth.o src/soseqs.o src/sos.o src/sossol.o \
+src/somn.o src/sorth.o src/soseqs.o src/sos.o src/sossol.o \
 src/spbco.o src/spbdi.o src/spbfa.o src/spbsl.o src/speli4.o src/spelip.o \
-src/spenc.o src/spigmr.o src/spincw.o src/spinit.o src/splpce.o src/splpdm.o \
-src/splp.o src/splpfe.o src/splpfl.o src/splpmn.o src/splpmu.o src/splpup.o \
-src/spoco.o src/spodi.o src/spofa.o src/spofs.o src/spoir.o src/spopt.o \
+src/spenc.o src/spigmr.o \
+src/splp.o \
+src/spoco.o src/spodi.o src/spofa.o src/spofs.o src/spoir.o \
 src/sposl.o src/sppco.o src/sppdi.o src/spperm.o src/sppfa.o src/sppsl.o \
-src/spsort.o src/sptsl.o src/sqrdc.o src/sqrsl.o src/sreadp.o src/srlcal.o \
+src/spsort.o src/sptsl.o src/sqrdc.o src/sqrsl.o src/srlcal.o \
 src/srot.o src/srotg.o src/srotm.o src/srotmg.o src/ss2lt.o src/ss2y.o \
 src/ssbmv.o src/sscal.o src/ssd2s.o src/ssdbcg.o src/ssdcg.o src/ssdcgn.o \
 src/ssdcgs.o src/ssdgmr.o src/ssdi.o src/ssdomn.o src/ssdscl.o src/ssds.o \
@@ -223,17 +231,17 @@ src/ssli.o src/ssllti.o src/sslubc.o src/sslucn.o src/sslucs.o src/sslugm.o \
 src/sslui2.o src/sslui4.o src/sslui.o src/ssluom.o src/ssluti.o src/ssmmi2.o \
 src/ssmmti.o src/ssmtv.o src/ssmv.o src/ssort.o src/sspco.o src/sspdi.o \
 src/sspev.o src/sspfa.o src/sspmv.o src/sspr2.o src/sspr.o src/sspsl.o \
-src/ssvdc.o src/sswap.o src/ssymm.o src/ssymv.o src/ssyr2.o src/ssyr2k.o \
-src/ssyr.o src/ssyrk.o src/stbmv.o src/stbsv.o src/steps.o src/stin.o \
-src/stod.o src/stout.o src/stpmv.o src/stpsv.o src/strco.o src/strdi.o \
-src/strmm.o src/strmv.o src/strsl.o src/strsm.o src/strsv.o src/svco.o \
-src/svd.o src/svout.o src/swritp.o src/sxlcal.o src/tevlc.o src/tevls.o \
+src/ssvdc.o \
+src/ssyr.o src/ssyrk.o src/stbmv.o src/stbsv.o src/steps.o \
+src/stod.o src/stpmv.o src/stpsv.o src/strco.o src/strdi.o \
+src/strsl.o src/svco.o \
+src/svd.o src/sxlcal.o src/tevlc.o src/tevls.o \
 src/tinvit.o src/tql1.o src/tql2.o src/tqlrat.o src/trbak1.o src/trbak3.o \
 src/tred1.o src/tred2.o src/tred3.o src/tri3.o src/tridib.o src/tridq.o \
 src/tris4.o src/trisp.o src/trix.o src/tsturm.o src/u11ls.o src/u11us.o \
-src/u12ls.o src/u12us.o src/ulsia.o src/usrmat.o src/vnwrms.o src/wnlit.o \
-src/wnlsm.o src/wnlt1.o src/wnlt2.o src/wnlt3.o src/wnnls.o src/xadd.o \
-src/xadj.o src/xc210.o src/xcon.o src/xerbla.o src/xerclr.o src/xercnt.o \
+src/u12ls.o src/u12us.o src/ulsia.o src/vnwrms.o src/wnlit.o \
+src/wnlsm.o src/wnlt1.o src/wnlt2.o src/wnlt3.o src/xadd.o \
+src/xadj.o src/xc210.o src/xcon.o src/xerclr.o src/xercnt.o \
 src/xermax.o src/xermsg.o \
 src/xgetf.o src/xgetua.o src/xgetun.o src/xlegf.o src/xnrmp.o src/xpmu.o \
 src/xpmup.o src/xpnrm.o src/xpqnu.o src/xpsi.o src/xqmu.o src/xqnu.o \
