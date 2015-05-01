@@ -1,0 +1,114 @@
+/* dxpmu.f -- translated by f2c (version 12.02.01).
+   You must link the resulting object file with libf2c:
+	on Microsoft Windows system, link with libf2c.lib;
+	on Linux or Unix systems, link with .../path/to/libf2c.a -lm
+	or, if you install libf2c.a in a standard place, with -lf2c -lm
+	-- in that order, at the end of the command line, as in
+		cc *.o -lf2c -lm
+	Source for libf2c is in /netlib/f2c/libf2c.zip, e.g.,
+
+		http://www.netlib.org/f2c/libf2c.zip
+*/
+
+#include <stdlib.h> /* For exit() */
+#include <f2c.h>
+
+/* DECK DXPMU */
+/* Subroutine */ int dxpmu_(doublereal *nu1, doublereal *nu2, integer *mu1, 
+	integer *mu2, doublereal *theta, doublereal *x, doublereal *sx, 
+	integer *id, doublereal *pqa, integer *ipqa, integer *ierror)
+{
+    static integer j, n;
+    static doublereal p0, x1, x2;
+    static integer mu, ip0;
+    extern /* Subroutine */ int dxadd_(doublereal *, integer *, doublereal *, 
+	    integer *, doublereal *, integer *, integer *), dxadj_(doublereal 
+	    *, integer *, integer *), dxpqnu_(doublereal *, doublereal *, 
+	    integer *, doublereal *, integer *, doublereal *, integer *, 
+	    integer *);
+
+/* ***BEGIN PROLOGUE  DXPMU */
+/* ***SUBSIDIARY */
+/* ***PURPOSE  To compute the values of Legendre functions for DXLEGF. */
+/*            Method: backward mu-wise recurrence for P(-MU,NU,X) for */
+/*            fixed nu to obtain P(-MU2,NU1,X), P(-(MU2-1),NU1,X), ..., */
+/*            P(-MU1,NU1,X) and store in ascending mu order. */
+/* ***LIBRARY   SLATEC */
+/* ***CATEGORY  C3A2, C9 */
+/* ***TYPE      DOUBLE PRECISION (XPMU-S, DXPMU-D) */
+/* ***KEYWORDS  LEGENDRE FUNCTIONS */
+/* ***AUTHOR  Smith, John M., (NBS and George Mason University) */
+/* ***ROUTINES CALLED  DXADD, DXADJ, DXPQNU */
+/* ***REVISION HISTORY  (YYMMDD) */
+/*   820728  DATE WRITTEN */
+/*   890126  Revised to meet SLATEC CML recommendations.  (DWL and JMS) */
+/*   901019  Revisions to prologue.  (DWL and WRB) */
+/*   901106  Changed all specific intrinsics to generic.  (WRB) */
+/*           Corrected order of sections in prologue and added TYPE */
+/*           section.  (WRB) */
+/*   920127  Revised PURPOSE section of prologue.  (DWL) */
+/* ***END PROLOGUE  DXPMU */
+
+/*        CALL DXPQNU TO OBTAIN P(-MU2,NU,X) */
+
+/* ***FIRST EXECUTABLE STATEMENT  DXPMU */
+    /* Parameter adjustments */
+    --ipqa;
+    --pqa;
+
+    /* Function Body */
+    *ierror = 0;
+    dxpqnu_(nu1, nu2, mu2, theta, id, &pqa[1], &ipqa[1], ierror);
+    if (*ierror != 0) {
+	return 0;
+    }
+    p0 = pqa[1];
+    ip0 = ipqa[1];
+    mu = *mu2 - 1;
+
+/*        CALL DXPQNU TO OBTAIN P(-MU2-1,NU,X) */
+
+    dxpqnu_(nu1, nu2, &mu, theta, id, &pqa[1], &ipqa[1], ierror);
+    if (*ierror != 0) {
+	return 0;
+    }
+    n = *mu2 - *mu1 + 1;
+    pqa[n] = p0;
+    ipqa[n] = ip0;
+    if (n == 1) {
+	goto L300;
+    }
+    pqa[n - 1] = pqa[1];
+    ipqa[n - 1] = ipqa[1];
+    if (n == 2) {
+	goto L300;
+    }
+    j = n - 2;
+L290:
+
+/*        BACKWARD RECURRENCE IN MU TO OBTAIN */
+/*              P(-MU2,NU1,X),P(-(MU2-1),NU1,X),....P(-MU1,NU1,X) */
+/*              USING */
+/*              (NU-MU)*(NU+MU+1.)*P(-(MU+1),NU,X)= */
+/*                2.*MU*X*SQRT((1./(1.-X**2))*P(-MU,NU,X)-P(-(MU-1),NU,X) */
+
+    x1 = mu * 2. * *x * *sx * pqa[j + 1];
+    x2 = -(*nu1 - mu) * (*nu1 + mu + 1.) * pqa[j + 2];
+    dxadd_(&x1, &ipqa[j + 1], &x2, &ipqa[j + 2], &pqa[j], &ipqa[j], ierror);
+    if (*ierror != 0) {
+	return 0;
+    }
+    dxadj_(&pqa[j], &ipqa[j], ierror);
+    if (*ierror != 0) {
+	return 0;
+    }
+    if (j == 1) {
+	goto L300;
+    }
+    --j;
+    --mu;
+    goto L290;
+L300:
+    return 0;
+} /* dxpmu_ */
+
