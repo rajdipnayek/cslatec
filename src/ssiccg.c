@@ -10,13 +10,13 @@
 		http://www.netlib.org/f2c/libf2c.zip
 */
 
+#include <stdio.h>
 #include <stdlib.h> /* For exit() */
 #include <f2c.h>
 
 /* Table of constant values */
 
 static integer c__1 = 1;
-static integer c__3 = 3;
 
 /* DECK SSICCG */
 /* Subroutine */ int ssiccg_(integer *n, real *b, real *x, integer *nelt, 
@@ -25,11 +25,6 @@ static integer c__3 = 3;
 	integer *iunit, real *rwork, integer *lenw, integer *iwork, integer *
 	leniw)
 {
-    /* System generated locals */
-    address a__1[3];
-    integer i__1[3];
-    char ch__1[101];
-
     /* Local variables */
     static integer nl;
     extern /* Subroutine */ int scg_(integer *, real *, real *, integer *, 
@@ -39,7 +34,6 @@ static integer c__3 = 3;
 	    integer *, integer *, integer *, real *, integer *);
     static integer locp, locr, locw, locz;
     extern /* Subroutine */ int ssmv_();
-    static char xern1[8];
     static integer locel, locdz, lociw;
     extern /* Subroutine */ int schkw_(char *, integer *, integer *, integer *
 	    , integer *, integer *, integer *, real *, ftnlen), ssics_(
@@ -50,10 +44,6 @@ static integer c__3 = 3;
     extern /* Subroutine */ int xermsg_(char *, char *, char *, integer *, 
 	    integer *, ftnlen, ftnlen, ftnlen);
     extern /* Subroutine */ int ssllti_();
-
-    /* Fortran I/O blocks */
-    static icilist io___13 = { 0, xern1, 0, "(I8)", 8, 1 };
-
 
 /* ***BEGIN PROLOGUE  SSICCG */
 /* ***PURPOSE  Incomplete Cholesky Conjugate Gradient Sparse Ax=b Solver. */
@@ -350,17 +340,13 @@ static integer c__3 = 3;
     ssics_(n, nelt, &ia[1], &ja[1], &a[1], isym, &nl, &iwork[lociel], &iwork[
 	    locjel], &rwork[locel], &rwork[locdin], &rwork[locr], ierr);
     if (*ierr != 0) {
-	s_wsfi(&io___13);
-	do_fio(&c__1, (char *)&(*ierr), (ftnlen)sizeof(integer));
-	e_wsfi();
-/* Writing concatenation */
-	i__1[0] = 36, a__1[0] = "IC factorization broke down on step ";
-	i__1[1] = 8, a__1[1] = xern1;
-	i__1[2] = 57, a__1[2] = ".  Diagonal was set to unity and factorizat"
-		"ion proceeded.";
-	s_cat(ch__1, a__1, i__1, &c__3, (ftnlen)101);
-	xermsg_("SLATEC", "SSICCG", ch__1, &c__1, &c__1, (ftnlen)6, (ftnlen)6,
-		 (ftnlen)101);
+	fprintf(stderr,
+                "IC factorization broke down on step %i.\n"
+                "Diagonal was set to unity and factorization proceeded.\n",
+                *ierr);
+        fflush(stderr);
+	xermsg_("SLATEC", "SSICCG", "see prev error",
+                &c__1, &c__1, 6, 6, 14);
 	*ierr = 7;
     }
 

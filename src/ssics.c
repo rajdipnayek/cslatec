@@ -10,6 +10,7 @@
 		http://www.netlib.org/f2c/libf2c.zip
 */
 
+#include <stdio.h>
 #include <stdlib.h> /* For exit() */
 #include <f2c.h>
 
@@ -24,9 +25,7 @@ static integer c__2 = 2;
 	real *el, real *d__, real *r__, integer *iwarn)
 {
     /* System generated locals */
-    address a__1[2];
-    integer i__1, i__2, i__3, i__4, i__5[2];
-    char ch__1[48];
+    integer i__1, i__2, i__3, i__4;
 
     /* Local variables */
     static integer i__, j, ic, ir, irr, ibgn, iend, jbgn, jend, icol, irow;
@@ -36,10 +35,6 @@ static integer c__2 = 2;
     static integer jeltmp;
     extern /* Subroutine */ int xermsg_(char *, char *, char *, integer *, 
 	    integer *, ftnlen, ftnlen, ftnlen);
-
-    /* Fortran I/O blocks */
-    static icilist io___19 = { 0, xern1, 0, "(I8)", 8, 1 };
-
 
 /* ***BEGIN PROLOGUE  SSICS */
 /* ***PURPOSE  Incompl. Cholesky Decomposition Preconditioner SLAP Set Up. */
@@ -400,16 +395,11 @@ L91:
 	    }
 
 /*         If we get here, we have real problems... */
-	    s_wsfi(&io___19);
-	    do_fio(&c__1, (char *)&irow, (ftnlen)sizeof(integer));
-	    e_wsfi();
-/* Writing concatenation */
-	    i__5[0] = 40, a__1[0] = "A and EL data structure mismatch in row "
-		    ;
-	    i__5[1] = 8, a__1[1] = xern1;
-	    s_cat(ch__1, a__1, i__5, &c__2, (ftnlen)48);
-	    xermsg_("SLATEC", "SSICS", ch__1, &c__1, &c__2, (ftnlen)6, (
-		    ftnlen)5, (ftnlen)48);
+	    fprintf(stderr, "A and EL data structure mismatch in row %i\n",
+                    irow);
+            fflush(stderr);
+	    xermsg_("SLATEC", "SSICS", "see prev error",
+                    &c__1, &c__2, 6, 5, 14);
 L100:
 	    ;
 	}
