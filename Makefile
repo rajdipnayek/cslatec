@@ -141,7 +141,7 @@ src/dxqnu.o src/dxred.o src/dxset.o src/dy4.o src/dyairy.o src/dy.o src/e1.o \
 src/efc.o src/efcmn.o src/ei.o src/eisdoc.o src/elmbak.o src/elmhes.o \
 src/eltran.o src/enorm.o src/exint.o src/exprel.o \
 src/ezfft1.o src/ezfftb.o src/ezfftf.o src/ezffti.o src/fac.o src/fc.o \
-src/fcmn.o src/fdjac1.o src/fdjac3.o src/fdump.o src/fftdoc.o src/figi2.o \
+src/fcmn.o src/fdjac1.o src/fdjac3.o src/fftdoc.o src/figi2.o \
 src/figi.o src/fulmat.o src/fundoc.o src/fzero.o src/gamic.o src/gami.o \
 src/gamit.o src/gamlim.o src/gamln.o src/gamma.o src/gamr.o src/gamrn.o \
 src/gaus8.o src/genbun.o src/h12.o src/hfti.o src/hkseq.o src/hpperm.o \
@@ -234,10 +234,10 @@ src/tris4.o src/trisp.o src/trix.o src/tsturm.o src/u11ls.o src/u11us.o \
 src/u12ls.o src/u12us.o src/ulsia.o src/usrmat.o src/vnwrms.o src/wnlit.o \
 src/wnlsm.o src/wnlt1.o src/wnlt2.o src/wnlt3.o src/wnnls.o src/xadd.o \
 src/xadj.o src/xc210.o src/xcon.o src/xerbla.o src/xerclr.o src/xercnt.o \
-src/xerdmp.o src/xerhlt.o src/xermax.o src/xermsg.o src/xerprn.o src/xersve.o \
+src/xermax.o src/xermsg.o \
 src/xgetf.o src/xgetua.o src/xgetun.o src/xlegf.o src/xnrmp.o src/xpmu.o \
 src/xpmup.o src/xpnrm.o src/xpqnu.o src/xpsi.o src/xqmu.o src/xqnu.o \
-src/xred.o src/xset.o src/xsetf.o src/xsetua.o src/xsetun.o src/yairy.o \
+src/xred.o src/xset.o src/xsetf.o src/xsetun.o src/yairy.o \
 src/zabs.o src/zacai.o src/zacon.o src/zairy.o src/zasyi.o src/zbesh.o \
 src/zbesi.o src/zbesj.o src/zbesk.o src/zbesy.o src/zbinu.o src/zbiry.o \
 src/zbknu.o src/zbuni.o src/zbunk.o src/zdiv.o src/zexp.o src/zkscl.o \
